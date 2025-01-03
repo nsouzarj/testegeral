@@ -1,0 +1,24 @@
+<h2>{{ isEditMode ? 'Editar Usuário' : 'Criar Novo Usuário' }}</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" formControlName="name" required>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" required>
+  </div>
+  <div>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" formControlName="password" required>
+  </div>
+  <div>
+    <label for="profile">Perfil:</label>
+    <select id="profile" formControlName="profile" required>
+      <option *ngFor="let profile of profiles" [ngValue]="profile">{{ profile.name }}</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">{{ isEditMode ? 'Salvar' : 'Criar' }}</button>
+  <button *ngIf="isEditMode" type="button" (click)="userForm.reset()">Cancelar</button>
+</form>

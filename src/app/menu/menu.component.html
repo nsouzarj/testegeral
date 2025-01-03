@@ -1,0 +1,10 @@
+ <nav>
+      <ul>
+        <li *ngFor="let item of menuItems"
+             (click)="setActiveSection(item.id)"
+             [class.active]="isActive(item.id)"
+        >
+            {{ item.label }}
+          </li>
+      </ul>
+  </nav>

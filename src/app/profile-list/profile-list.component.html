@@ -1,0 +1,19 @@
+<h2>Lista de Perfis</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let profile of profiles">
+      <td>{{ profile.id }}</td>
+      <td>{{ profile.name }}</td>
+      <td>
+        <button>Editar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
