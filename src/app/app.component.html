@@ -1,22 +1,25 @@
 <div style="text-align:center">
-    <h1 *ngIf="isLoggedIn">
-      Welcome to {{ title }}!
-   </h1>
+  <h1 *ngIf="isLoggedIn">
+    Bem vindo ao {{ title }}
+  </h1>
+  <h2 *ngIf="isLoggedIn && loggedUser">
+    Olá, {{loggedUser.name}}
+  </h2>
   <app-login *ngIf="!isLoggedIn"></app-login>
-   <div *ngIf="isLoggedIn">
-        <button (click)="logout()">Logout</button>
-         <app-menu (activeSectionChange)="activeSection = $event"></app-menu>
-        <div *ngIf="activeSection === 'user-form' && (isAdmin() | async)">
-            <app-user-form></app-user-form>
-       </div>
-       <div *ngIf="activeSection === 'user-list'">
-            <app-user-list></app-user-list>
-        </div>
-       <div *ngIf="activeSection === 'profile-form' && (isAdmin() | async)">
-            <app-profile-form></app-profile-form>
-       </div>
-        <div *ngIf="activeSection === 'profile-list'">
-           <app-profile-list></app-profile-list>
-       </div>
-   </div>
- </div>
+  <div *ngIf="isLoggedIn">
+    <button (click)="logout()">Logout</button>
+    <app-menu (activeSectionChange)="activeSection = $event"></app-menu>
+    <div *ngIf="activeSection === 'user-form' && ((isAdmin() | async) || (userToEdit && isOwnUser(userToEdit)))">
+      <app-user-form [user]="userToEdit" (cancelEditUser)="onCancelUserEdit()"></app-user-form>
+    </div>
+    <div *ngIf="activeSection === 'user-list'">
+      <app-user-list (editUser)="onEditUser($event)"></app-user-list>
+    </div>
+    <div *ngIf="activeSection === 'profile-form' && (isAdmin() | async)">
+      <app-profile-form [profile]="profileToEdit" (cancelEditProfile)="onCancelProfileEdit()"></app-profile-form>
+    </div>
+    <div *ngIf="activeSection === 'profile-list'">
+      <app-profile-list (editProfile)="onEditProfile($event)"></app-profile-list>
+    </div>
+  </div>
+</div>

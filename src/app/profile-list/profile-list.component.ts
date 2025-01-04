@@ -1,27 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileService } from '../service/profile.service';
 import { Profile } from '../models/profile.model';
- @Component({
-     selector: 'app-profile-list',
-    standalone:true,
-    imports:[CommonModule],
-      templateUrl: './profile-list.component.html',
-     styleUrls: ['./profile-list.component.css']
+import { ProfileService } from '../service/profile.service';
+
+@Component({
+  selector: 'app-profile-list',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './profile-list.component.html',
+  styleUrls: ['./profile-list.component.css']
 })
 export class ProfileListComponent implements OnInit {
-   profiles: Profile[] = [];
+  profiles: Profile[] = [];
+  @Output() editProfile = new EventEmitter<Profile>();
 
-     constructor(private profileService: ProfileService) { }
 
-     ngOnInit(): void {
-       this.loadProfiles();
-     }
+  constructor(private profileService: ProfileService) { }
 
-    loadProfiles(): void {
-         this.profileService.getProfiles().subscribe(profiles => {
-            this.profiles = profiles;
-        });
-    }
+  ngOnInit(): void {
+    this.loadProfiles();
+  }
+
+  loadProfiles(): void {
+    this.profileService.getProfiles().subscribe(profiles => {
+      this.profiles = profiles;
+    });
+  }
+  onEdit(profile: Profile): void {
+    this.editProfile.emit(profile);
+  }
 }

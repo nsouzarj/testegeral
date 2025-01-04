@@ -1,9 +1,11 @@
+
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProfileService } from '../service/profile.service';
 import { Profile } from '../models/profile.model';
+import { ProfileService } from '../service/profile.service';
 @Component({
   selector: 'app-profile-form',
   standalone: true,
@@ -11,10 +13,15 @@ import { Profile } from '../models/profile.model';
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.css']
 })
-export class ProfileFormComponent implements OnInit {
+
+export class ProfileFormComponent implements OnInit, OnChanges {
   profileForm: FormGroup;
   isEditMode = false;
   profileId: number | null = null;
+
+
+  @Input() profile: Profile | null = null;
+  @Output() cancelEditProfile = new EventEmitter<void>();
 
 
   constructor(
@@ -25,46 +32,45 @@ export class ProfileFormComponent implements OnInit {
       name: ['', Validators.required],
     });
   }
+
   ngOnInit(): void {
   }
-
-  onSubmit(): void {
-    console.log("onSubmit called", this.profileForm);
-    if (this.profileForm.valid) {
-        console.log("Form is valid");
-        const profile = this.profileForm.value as Profile;
-        profile.name = profile.name.toUpperCase();
-        if (this.isEditMode && this.profileId) {
-            console.log("Updating profile", profile);
-           this.profileService.updateProfile(this.profileId, profile).subscribe(() => {
-                console.log("Profile updated successfully");
-                 this.profileForm.reset();
-                this.isEditMode = false;
-               this.profileId = null;
-            },
-            (error) => {
-              console.log("Error updating profile:", error); // Log de erro
-           });
-        } else {
-           console.log("Creating profile", profile);
-           this.profileService.createProfile(profile).subscribe(() => {
-               console.log("Profile created successfully");
-               this.profileForm.reset();
-             },
-             (error) => {
-               console.log("Error creating profile:", error); // Log de erro
-           });
-         }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['profile'] && changes['profile'].currentValue) {
+      this.isEditMode = true;
+      this.profileId = changes['profile'].currentValue.id;
+      this.profileForm.patchValue({
+        name: changes['profile'].currentValue.name
+      });
     } else {
-         console.log("Form is invalid");
-     }
+      this.isEditMode = false;
+      this.profileId = null;
+      this.profileForm.reset();
     }
-
-  onEdit(profile: Profile): void {
-    this.isEditMode = true;
-    this.profileId = profile.id;
-    this.profileForm.patchValue({
-      name: profile.name,
-    });
   }
+  onSubmit(): void {
+    if (this.profileForm.valid) {
+      const profile = this.profileForm.value as Profile;
+      profile.name = profile.name.toUpperCase();
+      if (this.isEditMode && this.profileId) {
+        this.profileService.updateProfile(this.profileId, profile).subscribe(() => {
+          this.profileForm.reset();
+          this.isEditMode = false;
+          this.profileId = null;
+        });
+      } else {
+        this.profileService.createProfile(profile).subscribe(() => {
+          this.profileForm.reset();
+        });
+      }
+    }
+  }
+
+  onCancel(): void {
+    this.profileForm.reset();
+    this.isEditMode = false;
+    this.profileId = null;
+    this.cancelEditProfile.emit(); // Emite o evento para o componente pai
+  }
+
 }

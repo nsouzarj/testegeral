@@ -1,23 +1,23 @@
-<h2>Lista de Usuários</h2>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Perfil</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.profile.name }}</td>
-      <td>
-        <button>Editar</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <h2>Lista de Usuários</h2>
+  <table>
+      <thead>
+        <tr>
+           <th>ID</th>
+           <th>Nome</th>
+          <th>Email</th>
+          <th>Perfil</th>
+           <th>Ações</th>
+        </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+            <td>{{ user.profile.name }}</td>
+          <td>
+                <button (click)="onEdit(user)">Editar</button>
+          </td>
+      </tr>
+     </tbody>
+ </table>

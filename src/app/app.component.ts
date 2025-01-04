@@ -5,11 +5,13 @@ import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
-
 import { CommonModule } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Profile } from './models/profile.model';
+import { User } from './models/user.model';
 import { AuthService } from './service/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -19,11 +21,15 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'meu-frontend';
-  activeSection: string = 'user-list';
+  title = 'SYSCADUSER';
+  activeSection: string = 'user-list ';
   isLoggedIn: boolean | string = false;
+  profileToEdit: Profile | null = null;
+  userToEdit: User | null = null;
+  loggedUser: User | null = null;
 
   constructor(private authService: AuthService) { }
+
   ngOnInit(): void {
     console.log("ngOnInit called");
     this.checkLoginStatus();
@@ -36,17 +42,23 @@ export class AppComponent implements OnInit {
       console.log('Token found.');
       const role = localStorage.getItem('auth_role')
       this.isLoggedIn = role ? role : true;
+      this.authService.getLoggedUser().subscribe(user => this.loggedUser = user)
     } else {
       console.log('Token not found. Setting isLoggedIn to false');
       this.isLoggedIn = false;
     }
     console.log("isLoggedIn:", this.isLoggedIn)
   }
+
+
   logout(): void {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('auth_role');
     this.isLoggedIn = false;
   }
+
+
+
   setActiveSection(sectionId: string) {
     this.activeSection = sectionId;
   }
@@ -55,5 +67,27 @@ export class AppComponent implements OnInit {
       return of(this.isLoggedIn.includes('ADMIN'));
     }
     return of(false);
+  }
+  onEditProfile(profile: Profile): void {
+    this.profileToEdit = profile;
+    this.activeSection = 'profile-form';
+  }
+  onCancelProfileEdit(): void {
+    this.profileToEdit = null;
+    this.activeSection = 'profile-list';
+  }
+  onEditUser(user: User): void {
+    this.userToEdit = user;
+    this.activeSection = 'user-form';
+  }
+  onCancelUserEdit(): void {
+    this.userToEdit = null;
+    this.activeSection = 'user-list';
+  }
+  isOwnUser(user: User): boolean {
+    if (this.loggedUser) {
+      return this.loggedUser.id === user.id;
+    }
+    return false;
   }
 }

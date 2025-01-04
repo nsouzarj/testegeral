@@ -2,19 +2,9 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Nome:</label>
-    <input
-        type="text"
-        id="name"
-        formControlName="name"
-        required
-        style="text-transform: uppercase;"
-        (input)="profileForm.patchValue({name: $any($event.target).value.toUpperCase()})"
-    >
+    <input type="text" id="name" formControlName="name" required style="text-transform: uppercase;"
+      (input)="profileForm.patchValue({name: $any($event.target).value.toUpperCase()})">
   </div>
-  <button type="submit" [disabled]="profileForm.invalid">
-    {{ isEditMode ? 'Salvar' : 'Criar' }}
-  </button>
-  <button *ngIf="isEditMode" type="button" (click)="profileForm.reset()">
-    Cancelar
-  </button>
+  <button type="submit" [disabled]="profileForm.invalid">{{ isEditMode ? 'Salvar' : 'Criar' }}</button>
+  <button *ngIf="isEditMode" type="button" (click)="onCancel()">Cancelar</button>
 </form>
