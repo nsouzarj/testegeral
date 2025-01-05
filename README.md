@@ -4,8 +4,8 @@
 
 Este é um sistema de gerenciamento de usuários e perfis, onde usuários podem ser cadastrados e associados a um perfil. O sistema demonstra como criar uma aplicação com autenticação e autorização utilizando Angular no frontend e Spring Boot no backend.
 Os projetos estao nesse dois repositorios do git:
-`https://github.com/nsouzarj/testegeral` - front-end
-`https://github.com/nsouzarj/backendteste` - back-end
+- `https://github.com/nsouzarj/testegeral` - front-end
+- `https://github.com/nsouzarj/backendteste` - back-end
 
 
 ## 2. Tecnologias Utilizadas
