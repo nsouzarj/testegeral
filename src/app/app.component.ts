@@ -22,7 +22,7 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'SYSCADUSER';
-  activeSection: string = 'user-list ';
+  activeSection: string = 'user-list';
   isLoggedIn: boolean | string = false;
   profileToEdit: Profile | null = null;
   userToEdit: User | null = null;
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
       console.log('Token not found. Setting isLoggedIn to false');
       this.isLoggedIn = false;
     }
-    console.log("isLoggedIn:", this.isLoggedIn)
+    console.log("isLoggedIn:", this.loggedUser?.name)
   }
 
 
