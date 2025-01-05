@@ -27,7 +27,7 @@ Os projetos estao nesse dois repositorios do git:
 ### 3.1 Requisitos
 
 *   **Backend:**
-    *   Java Development Kit (JDK) 17 ou superior
+    *   Java Development Kit (JDK) 18 ou superior
     *   Maven (para projetos Maven) ou Gradle (para projetos Gradle)
     *   IDE (IntelliJ IDEA, Eclipse, Visual Studio Code, etc.)
      *   [Opcional] Docker
@@ -60,8 +60,7 @@ Os projetos estao nesse dois repositorios do git:
 1. Instale o docker se nao tiver .
 2. Na raiz do projeto Spring Boot execute `docker build -t backend .`
 3. Após a imagem ser criada execute `docker run -p 8084:8084 backend`
-4. Caso prefira baixe a image do  docker `pull nelsonbrazil/backend`
-5. E execute  `docker run -p 8084:8084 nelsonbrazil/backend`
+4. Caso prefira baixe a image do  docker `pull nelsonbrazil/backend`  execute  `docker run -p 8084:8084 nelsonbrazil/backend` isso ira baixar a imagem pronta do back-end e subir na porta 8084.
 
 ## 4. Autenticação e Autorização
 
