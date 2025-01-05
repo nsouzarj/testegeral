@@ -3,6 +3,10 @@
 ## 1. Introdução
 
 Este é um sistema de gerenciamento de usuários e perfis, onde usuários podem ser cadastrados e associados a um perfil. O sistema demonstra como criar uma aplicação com autenticação e autorização utilizando Angular no frontend e Spring Boot no backend.
+Os projetos estao nesse dois repositorios do git:
+`https://github.com/nsouzarj/testegeral` - front-end
+`https://github.com/nsouzarj/backendteste` - back-end
+
 
 ## 2. Tecnologias Utilizadas
 
@@ -50,9 +54,11 @@ Este é um sistema de gerenciamento de usuários e perfis, onde usuários podem 
 2.  Abra o navegador em `http://localhost:4200`.
 
 ### 3.5 Execução com Docker
-1. Instale o docker.
-2. Na raiz do projeto Spring Boot execute `docker build -t meu-backend .`
-3. Após a imagem ser criada execute `docker run -p 8080:8080 meu-backend`
+1. Instale o docker se nao tiver .
+2. Na raiz do projeto Spring Boot execute `docker build -t backend .`
+3. Após a imagem ser criada execute `docker run -p 8084:8084 backend`
+4. Caso prefirar baixe a image do  docker `pull nelsonbrazil/backend`
+5. E execute  `docker run -p 8084:8084 nelsonbrazil/backend`
 
 ## 4. Autenticação e Autorização
 
