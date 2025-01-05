@@ -32,21 +32,24 @@ Os projetos estao nesse dois repositorios do git:
     *   IDE (IntelliJ IDEA, Eclipse, Visual Studio Code, etc.)
      *   [Opcional] Docker
 *   **Frontend:**
-    *   Node.js 16+ ou superior (recomendado 18+)
+    *   Node.js 19+ ou superior (recomendado 19)
     *   npm (Node Package Manager)
     *   Angular CLI
     *   IDE (Visual Studio Code, etc.)
 
 ### 3.2 Instalação do Backend
 
-1.  Instale o JDK 17+, Maven ou Gradle e importe o projeto em sua IDE.
+1.  Instale o JDK 18+, Maven ou Gradle e importe o projeto em sua IDE.
 2.  Verifique as dependências do `pom.xml` (Maven) ou `build.gradle` (Gradle).
 3.  Execute a classe principal do projeto para iniciar o backend.
+4.  Execute dessa `mvn spring-boot:run` caso nao use o docker.
+
 
 ### 3.3 Instalação do Frontend
 
 1.  Instale o Node.js 16+ e o Angular CLI: `npm install -g @angular/cli`.
 2.  Navegue até a pasta do projeto e execute `npm install` para instalar as dependências.
+4.  Caso prefira utlizar o docker `docker run -p 80:80 nelsonbrazil/testegeral` isso irá baixar a imagem já criada no docker hub e subir a aplicação executando na porta 80.
 
 ### 3.4 Execução do Frontend
 
