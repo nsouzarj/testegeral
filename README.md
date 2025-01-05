@@ -57,7 +57,7 @@ Os projetos estao nesse dois repositorios do git:
 1. Instale o docker se nao tiver .
 2. Na raiz do projeto Spring Boot execute `docker build -t backend .`
 3. Após a imagem ser criada execute `docker run -p 8084:8084 backend`
-4. Caso prefirar baixe a image do  docker `pull nelsonbrazil/backend`
+4. Caso prefira baixe a image do  docker `pull nelsonbrazil/backend`
 5. E execute  `docker run -p 8084:8084 nelsonbrazil/backend`
 
 ## 4. Autenticação e Autorização
@@ -76,8 +76,8 @@ Os projetos estao nesse dois repositorios do git:
 *   Validar os campos de formulários.
 *   Implementar um sistema de tratamento de erros mais robusto.
 *   Criar testes unitários e de integração.
-*  Documentar os componentes, serviços e rotas da aplicação.
-* Implementar a funcionalidade de edição do perfil do usuário.
+*   Documentar os componentes, serviços e rotas da aplicação.
+*  Implementar a funcionalidade de edição do perfil do usuário.
 ## 6. Solução de Problemas (Troubleshooting)
 
 *   **Erro de CORS:** Verifique a anotação `@CrossOrigin` no backend.
@@ -85,7 +85,7 @@ Os projetos estao nesse dois repositorios do git:
 *   **Erro de Redirecionamento:** Verifique o método `ngOnInit` do `AppComponent` e as configurações do seu componente de login.
 * **Problema ao Enviar Requisição no Backend:**
  *  Verifique a url e o método http que você está enviando a requisição.
- * Verifique os headers que você está enviando na requisição.
+ *  Verifique os headers que você está enviando na requisição.
 
 ## 6. Acesso ao sistema
 
