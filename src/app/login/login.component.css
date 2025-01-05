@@ -3,33 +3,48 @@ form {
   flex-direction: column;
   max-width: 300px;
   margin: 20px auto;
+  padding: 20px; /* Adicionando preenchimento */
+  border: 1px solid #ccc; /* Adicionando borda */
+  border-radius: 10px; /* Adicionando borda arredondada */
 }
+
 div {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 label {
   display: block;
   margin-bottom: 5px;
 }
 input {
- padding: 8px;
- border: 1px solid #ddd;
+  padding: 8px;
+  border: 1px solid #ddd;
   border-radius: 4px;
 }
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 15px;
- border: none;
-cursor: pointer;
+  border: none;
+  cursor: pointer;
   border-radius: 4px;
   margin-top: 10px;
 }
 button:disabled {
- background-color: #cccccc;
-cursor: not-allowed;
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 .error-message {
   color: red;
- margin-top: 10px;
+  margin-top: 10px;
+}
+.logo {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333; /* Cor do texto /
+  display: block;
+  text-align: center; / Centraliza o texto horizontalmente /
+  margin-bottom: 20px;
+  padding: 10px; / Adicionando padding /
+  border: 1px solid #ccc; / Adicionando borda /
+  border-radius: 10px; / Adicionando borda arredondada */
 }

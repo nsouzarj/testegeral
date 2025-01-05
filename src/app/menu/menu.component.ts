@@ -11,7 +11,7 @@ import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, UserFormComponent, UserListComponent, ProfileFormComponent, ProfileListComponent],
+  imports: [CommonModule],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
