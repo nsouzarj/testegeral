@@ -89,7 +89,7 @@ Os projetos estao nesse dois repositorios do git:
  *  Verifique a url e o método http que você está enviando a requisição.
  *  Verifique os headers que você está enviando na requisição.
 
-## 6. Acesso ao sistema
+## 7. Acesso ao sistema
 
 *  **Login e senha
 *  login: admin
